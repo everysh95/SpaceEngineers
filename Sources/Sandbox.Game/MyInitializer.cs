@@ -111,9 +111,9 @@ namespace Sandbox
             MyTrace.InitWinTrace();
 #endif // !XB1
 
-			MyEnumDuplicitiesTester.CheckEnumNotDuplicitiesInRunningApplication(); // About 300 ms
+            MyEnumDuplicitiesTester.CheckEnumNotDuplicitiesInRunningApplication(); // About 300 ms
 
-			Debug.WriteLine(string.Format("{0}: Started", m_appName));
+            Debug.WriteLine(string.Format("{0}: Started", m_appName));
 
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExceptionHandler);
             Thread.CurrentThread.Name = "Main thread";

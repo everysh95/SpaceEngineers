@@ -1261,9 +1261,9 @@ namespace Sandbox
             MySandboxGame.Log.WriteLine("MySandboxGame.LoadData() - END");
             ProfilerShort.End();
 
-			InitModAPI();
+            InitModAPI();
 
-			if (OnGameLoaded != null) OnGameLoaded(this, null);
+            if (OnGameLoaded != null) OnGameLoaded(this, null);
         }
 
         public static void StartPreload()

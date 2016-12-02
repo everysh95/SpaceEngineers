@@ -83,7 +83,7 @@ namespace Sandbox.Game.Gui
                     if (SelectedEntity is MyCubeGrid)
                     {
                         var shape = (HkGridShape)((MyPhysicsBody)SelectedEntity.Physics).GetShape();
-                        //shape.DebugDraw = false;
+                        shape.DebugDraw = false;
                     }
 
                     ((MyEntity)SelectedEntity).ClearDebugRenderComponents();
@@ -105,8 +105,8 @@ namespace Sandbox.Game.Gui
                             if (SelectedEntity is MyCubeGrid)
                             {
                                 var shape = (HkGridShape)((MyPhysicsBody) SelectedEntity.Physics).GetShape();
-                                //shape.DebugRigidBody = body;
-                                //shape.DebugDraw = true;
+                                shape.DebugRigidBody = body;
+                                shape.DebugDraw = true;
                             }
                             break;
                         }
