@@ -238,16 +238,16 @@ namespace Sandbox.Engine.Voxels
             return result;
         }
 
-        private void RequestShapeBlockingLod1(int x, int y, int z, out HkShape shape, out HkReferencePolicy refPolicy)
+        private void RequestShapeBlockingLod1(int x, int y, int z, out HkBvCompressedMeshShape shape, out HkReferencePolicy refPolicy)
         {
             RequestShapeBlockingInternal(x, y, z, out shape, out refPolicy, true);
         }
-        private void RequestShapeBlocking(int x, int y, int z, out HkShape shape, out HkReferencePolicy refPolicy)
+        private void RequestShapeBlocking(int x, int y, int z, out HkBvCompressedMeshShape shape, out HkReferencePolicy refPolicy)
         {
             RequestShapeBlockingInternal(x, y, z, out shape, out refPolicy, false);
         }
 
-        private void RequestShapeBlockingInternal(int x, int y, int z, out HkShape shape, out HkReferencePolicy refPolicy, bool lod1physics)
+        private void RequestShapeBlockingInternal(int x, int y, int z, out HkBvCompressedMeshShape shape, out HkReferencePolicy refPolicy, bool lod1physics)
         {
             ProfilerShort.Begin("MyVoxelPhysicsBody.RequestShapeBlocking");
 
@@ -255,7 +255,7 @@ namespace Sandbox.Engine.Voxels
 
             int lod = lod1physics ? 1 : 0;
             var cellCoord = new MyCellCoord(lod, new Vector3I(x, y, z));
-            shape = HkShape.Empty;
+            shape = (HkBvCompressedMeshShape)HkShape.Empty;
             // shape must take ownership, otherwise shapes created here will leak, since I can't remove reference
             refPolicy = HkReferencePolicy.TakeOwnership;
             //MyPrecalcComponent.QueueJobCancel(m_workTracker, cellCoord);
@@ -277,8 +277,8 @@ namespace Sandbox.Engine.Voxels
             if (!MyIsoMesh.IsEmpty(geometryData))
             {
                 ProfilerShort.Begin("Shape from geometry");
-                shape = CreateShape(geometryData, true);
-                shape.AddReference();
+                shape = (HkBvCompressedMeshShape)CreateShape(geometryData, true);
+                ((HkShape)shape).AddReference();
                 var args = new MyPrecalcJobPhysicsPrefetch.Args() {GeometryCell = cellCoord, TargetPhysics = this, Tracker = m_workTracker, SimpleShape = shape};
                 MyPrecalcJobPhysicsPrefetch.Start(args);
                 m_needsShapeUpdate = true;
@@ -631,7 +631,7 @@ namespace Sandbox.Engine.Voxels
             {
                 HkUniformGridShape shape = GetShape(coord.Lod);
                 Debug.Assert(shape.Base.IsValid);
-                shape.SetChild(coord.CoordInLod.X, coord.CoordInLod.Y, coord.CoordInLod.Z, childShape, HkReferencePolicy.None);
+                shape.SetChild(coord.CoordInLod.X, coord.CoordInLod.Y, coord.CoordInLod.Z, (HkBvCompressedMeshShape)childShape, HkReferencePolicy.None);
                 //BoundingBoxD worldAabb;
                 //MyVoxelCoordSystems.GeometryCellCoordToWorldAABB(m_voxelMap.PositionLeftBottomCorner, ref coord, out worldAabb);
                 //VRageRender.MyRenderProxy.DebugDrawAABB(worldAabb, Color.Green, 1f, 1f, true);
@@ -650,7 +650,7 @@ namespace Sandbox.Engine.Voxels
                 {
                     var coord = entry.Key;
                     var childShape = entry.Value;
-                    shape.SetChild(coord.X, coord.Y, coord.Z, childShape, HkReferencePolicy.None);
+                    shape.SetChild(coord.X, coord.Y, coord.Z, (HkBvCompressedMeshShape)childShape, HkReferencePolicy.None);
                 }
                 m_needsShapeUpdate = true;
                 /*if (InvalidCells.Count != 0)
@@ -728,7 +728,7 @@ namespace Sandbox.Engine.Voxels
                 }
                 else
                 {
-                    s_cellGeometry.SetGeometry(s_vertexList, s_indexList);
+                    //s_cellGeometry.SetGeometry(s_vertexList, s_indexList);
                     result = new HkBvCompressedMeshShape(s_cellGeometry, null, null, HkWeldingType.None,
                         MyPerGameSettings.PhysicsConvexRadius);
 
@@ -742,7 +742,7 @@ namespace Sandbox.Engine.Voxels
 
         internal HkShape BakeCompressedMeshShape(HkSimpleMeshShape simpleMesh)
         {
-            return new HkBvCompressedMeshShape(simpleMesh);
+            return simpleMesh;
         }
 
         public override bool IsStaticForCluster

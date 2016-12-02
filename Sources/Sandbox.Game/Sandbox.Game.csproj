@@ -135,7 +135,7 @@
       <HintPath>..\..\3rd\Infinario\InfinarioSDK.dll</HintPath>
     </Reference>
     <Reference Include="RecastDetourWrapper">
-      <HintPath>..\..\3rd\RecastDetourWrapper\release\x64\RecastDetourWrapper.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\RecastDetourWrapper.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
       <HintPath>..\..\3rd\SharpDX\SharpDX.dll</HintPath>
@@ -1576,6 +1576,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Screens\Terminal\MyTerminalFactionController.cs" />
+    <None Include="app.config" />
     <None Include="Game\Entities\Cube\Blocks.cd" />
     <None Include="Game\Localization\MySpaceTexts.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

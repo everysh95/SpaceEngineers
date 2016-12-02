@@ -123,6 +123,9 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RecastDetourWrapper">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\RecastDetourWrapper.dll</HintPath>
+    </Reference>
     <Reference Include="SharpDX">
       <HintPath>..\..\3rd\SharpDX\SharpDX.dll</HintPath>
     </Reference>
