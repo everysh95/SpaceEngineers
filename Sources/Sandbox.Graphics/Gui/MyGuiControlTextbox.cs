@@ -92,10 +92,13 @@ namespace Sandbox.Graphics.GUI
         private MyGuiCompositeTexture m_compositeBackground;
         private StringBuilder m_text = new StringBuilder();
         private MyGuiControlTextboxSelection m_selection = new MyGuiControlTextboxSelection();
-        
+		private TextBox m_jpd_tb = new TextBox();
+
         #endregion
 
         #region Properties
+		public static Form s_gw_form;
+		public static bool syskeydown = false;
         public int MaxLength
         {
             get { return m_maxLength; }
@@ -239,6 +242,15 @@ namespace Sandbox.Graphics.GUI
             set;
         }
 
+		public void TextRead(object sender, System.Windows.Forms.KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Return)
+			{
+				StringBuilder sb = new StringBuilder(m_jpd_tb.Text);
+				SetText(sb);
+				s_gw_form.Select();
+			}
+		}
         #region Events
         public event Action<MyGuiControlTextbox> TextChanged;
         public event Action<MyGuiControlTextbox> EnterPressed;
@@ -270,6 +282,7 @@ namespace Sandbox.Graphics.GUI
             m_visualStyle           = visualStyle;
             RefreshVisualStyle();
             m_slidingWindowOffset = 0f;
+			m_jpd_tb.KeyDown += this.TextRead;
         }
 
         public override void Init(MyObjectBuilder_GuiControlBase objectBuilder)
@@ -560,10 +573,15 @@ namespace Sandbox.Graphics.GUI
         {
             const char BACKSPACE = '\b';
             bool textChanged = false;
+			bool onIMEText = false;
             foreach (var character in MyInput.Static.TextInput)
             {
                 if (IsSkipCharacter((MyKeys)character))
                     continue;
+				if (character == '\ue000')
+				{
+
+				}
                 if (Char.IsControl(character))
                 {
                     if (character == BACKSPACE)
@@ -602,6 +620,15 @@ namespace Sandbox.Graphics.GUI
                 OnTextChanged();
                 ret = this;
             }
+			if (onIMEText)
+			{
+				StringBuilder sbbuf = new StringBuilder();
+				GetText(sbbuf);
+				if (!s_gw_form.Controls.Contains(this.m_jpd_tb))
+					s_gw_form.Controls.Add(this.m_jpd_tb);
+				this.m_jpd_tb.Focus();
+				this.m_jpd_tb.Text = sbbuf.ToString();
+			}
         }
 
         private void InsertChar(char character)

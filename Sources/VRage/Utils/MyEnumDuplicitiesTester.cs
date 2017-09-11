@@ -40,7 +40,7 @@ namespace VRage.Utils
                 {
                     if (companyName == null || System.Diagnostics.FileVersionInfo.GetVersionInfo(dllPath).CompanyName == companyName)
                     {
-                        assembliesToTest.Add(Assembly.LoadFrom(dllPath));
+                        //assembliesToTest.Add(Assembly.LoadFrom(dllPath));
                     }
                 }
             }

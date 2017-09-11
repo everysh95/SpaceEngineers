@@ -107,10 +107,34 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Sandbox.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\Sandbox.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="VRage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\VRage.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Input, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\VRage.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\VRage.Library.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Math, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\VRage.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="VRage.Render, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\VRage.Render.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gui\IMyGuiControlsOwner.cs">
@@ -196,33 +220,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sandbox.Common\Sandbox.Common.csproj">
-      <Project>{2C96F0AB-7962-4B73-A075-B0E0B09F6195}</Project>
-      <Name>Sandbox.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VRage.Game\VRage.Game.csproj">
       <Project>{4539b5f0-3316-40e6-b032-9fbcafaac5be}</Project>
       <Name>VRage.Game</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VRage.Input\VRage.Input.csproj">
-      <Project>{f77d0a49-f0a1-4e8a-80c8-cbf1842bf2d4}</Project>
-      <Name>VRage.Input</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VRage.Library\VRage.Library.csproj">
-      <Project>{26FE022E-42AB-40BE-BA9D-97CBE34E7D99}</Project>
-      <Name>VRage.Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VRage.Math\VRage.Math.csproj">
-      <Project>{40CE67D5-C89F-4A56-AE52-85DB1BEA07FE}</Project>
-      <Name>VRage.Math</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VRage.Render\VRage.Render.csproj">
-      <Project>{1713e6cd-808a-4a44-9532-04771499bb01}</Project>
-      <Name>VRage.Render</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VRage\VRage.csproj">
-      <Project>{1c814936-c9a7-4faf-b543-28f021d98b6c}</Project>
-      <Name>VRage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -20,6 +20,14 @@ using VRageRender.ExternalApp;
 
 namespace Sandbox.Engine.Platform
 {
+	static class GamePlatformPropatys
+	{
+		public static Form gwform
+		{
+			get { return Graphics.GUI.MyGuiControlTextbox.s_gw_form; }
+			set { Graphics.GUI.MyGuiControlTextbox.s_gw_form = value; }
+		}
+	}
     /// <summary>
     /// No events like KeyDown, MouseMove... are raised.
     /// Activated and Deactivated is still raised.
@@ -49,10 +57,12 @@ namespace Sandbox.Engine.Platform
         public GameWindowForm()
             : this("VRage")
         {
+			GamePlatformPropatys.gwform = this;
         }
 
         public GameWindowForm(string text)
         {
+			GamePlatformPropatys.gwform = this;
             // By default, non resizable
             MaximizeBox = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -138,9 +148,12 @@ namespace Sandbox.Engine.Platform
 
         protected override void WndProc(ref Message m)
         {
-            // Because of ALT and its focus to menu
-            if (m.Msg == (int)WinApi.WM.SYSKEYDOWN)
-                return;
+			// Because of ALT and its focus to menu
+			if (m.Msg == (int)WinApi.WM.SYSKEYDOWN)
+			{
+				m_bufferedChars.Add('\ue000');
+				return;
+			}
 
             if (m.Msg == (int)WinApi.WM.CHAR)
             {
