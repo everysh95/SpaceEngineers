@@ -165,6 +165,10 @@
     <Reference Include="SharpDX.XAudio2">
       <HintPath>..\..\3rd\SharpDX\SharpDX.XAudio2.dll</HintPath>
     </Reference>
+    <Reference Include="SpaceEngineers.ObjectBuilders, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\SpaceEngineers.ObjectBuilders.dll</HintPath>
+    </Reference>
     <Reference Include="SteamSDK" Condition="('$(Configuration)' != 'Debug_XB1') And ('$(Configuration)' != 'Release_XB1')">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\3rd\SteamSDK\$(Configuration)\$(Platform)\SteamSDK.dll</HintPath>
@@ -1638,10 +1642,6 @@
     <ProjectReference Include="..\XB1Interface\XB1Interface.csproj" Condition="('$(Configuration)' == 'Debug_XB1') Or ('$(Configuration)' == 'Release_XB1')">
       <Project>{b6068a9d-54a1-425a-9dfb-87fd9ec5e822}</Project>
       <Name>XB1Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SpaceEngineers.ObjectBuilders\SpaceEngineers.ObjectBuilders.csproj">
-      <Project>{e48feb99-6814-4947-8035-8c2b4066dd9b}</Project>
-      <Name>SpaceEngineers.ObjectBuilders</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
